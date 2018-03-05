@@ -10,6 +10,10 @@ calculateNewAmount = (oldAmount, type) => {
 };
 
 // Change product amount
+// NOTE: In a real-world app you'd extract the fetches into dedicated functions which build the request.
+// And you'd not put the fetches inside each other, but use a more sophisticated method for getting and storing data.
+// Possibly something with Promise.All and chuck the data in a front-end state management object, possibly with Redux.
+// ]This would also allow for the writing of unit tests, api uri generation based upon context, etc.
 changeProductAmount = (id, type) => {
     let newAmount = 0;
 
@@ -19,6 +23,8 @@ changeProductAmount = (id, type) => {
         .then(data => {
             // Calculate the new to-be amount
             newAmount = calculateNewAmount(data.amount, type);
+
+            // Now that we know the to-be amount we'll update the product in our mock database
             fetch(`http://localhost:8081/products/${id}`, {
                 body: JSON.stringify({ 'amount': newAmount }),
                 headers: { 'content-type': 'application/json' },
@@ -26,6 +32,7 @@ changeProductAmount = (id, type) => {
             })
                 .then(res => res.json())
                 .then(data => {
+                    // And lastly we'll re-render the basket so our changes will be reflected in the browser
                     updateBasket();
                 })
                 .catch(err => console.error(err));
@@ -79,6 +86,10 @@ createControl = (id, type, text) => {
 };
 
 // Update basket
+// Gets the data from the mock API and also takes care of displaying it.
+// NOTE: In a real-world app the logic for getting and displaying data would be separated. Also, every little change
+// currently causes an entire re-render, which isn't very efficient. A library such as React would help in this case,
+// using its virtual DOM to diff changes with the actual DOM and re-render only the nodes that need updating.
 updateBasket = () => {
     // Get new basket
     fetch('http://localhost:8081/products')
