@@ -4,36 +4,31 @@
       "id": 1,
       "name": "Apples",
       "price": 25,
-      "discount": null
+      "discount": null,
+      "amount": 5
     }, {
       "id": 2,
       "name": "Bananas",
       "price": 10,
-      "discount": null
+      "discount": null,
+      "amount": 0
     }, {
       "id": 3,
       "name": "Kiwis",
       "price": 15,
-      "discount": [5, 3]
+      "discount": [5, 3],
+      "amount": 0
     }, {
       "id": 4,
       "name": "Oranges",
       "price": 30,
-      "discount": null
+      "discount": null,
+      "amount": 0
     }, {
       "id": 4,
       "name": "Papayas",
       "price": 50,
-      "discount": [3, 2]
-    }
-  ],
-  "basket": [
-    {
-      "product_id": 1,
-      "amount": 5
-    },
-    {
-      "product_id": 4,
+      "discount": [3, 2],
       "amount": 2
     }
   ]
