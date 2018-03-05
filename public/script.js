@@ -1,4 +1,27 @@
-// Increase product
+// Increase product amount
+increaseProductAmount = (id) => {
+    let newAmount = 0;
+    fetch(`http://localhost:8081/products/${id}`)
+        .then(res => res.json())
+        .then(data => {
+            console.log('Received amount:', data.amount);
+            newAmount = data.amount + 1;
+            fetch(`http://localhost:8081/products/${id}`, {
+                body: JSON.stringify({ 'amount': newAmount }),
+                headers: { 'content-type': 'application/json' },
+                method: 'PATCH'
+            })
+                .then(res => res.json())
+                .then(data => {
+                    console.log('Received updated amount:', data.amount);
+                    updateBasket();
+                })
+                .catch(err => console.error(err));
+        })
+        .catch(err => {
+            console.error(err);
+        });
+};
 
 // Decrease product
 
@@ -43,6 +66,9 @@ updateBasket = () => {
         .then(res => res.json())
         .then(data => {
             console.log('Received:', data);
+
+            // Clear basket
+            document.getElementById('basket').innerHTML = '';
 
             // Build product list
             data.map(product => {
