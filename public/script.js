@@ -88,8 +88,10 @@ updateBasket = () => {
             // Build product list
             data.map(product => {
                 const { id, name, price, amount } = product;
-                const productItem = document.createElement('p');
-                productItem.innerText = `${name} ${price} ${amount}`;
+
+                // Product details
+                const productItem = document.createElement('li');
+                productItem.innerText = `${name}: ${amount} * ${price}`;
 
                 // Product controls
                 const addButton = createControl(id, 'increase', '+ Add 1');
