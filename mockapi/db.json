@@ -12,7 +12,7 @@
       "name": "Bananas",
       "price": 10,
       "discount": null,
-      "amount": 3
+      "amount": 0
     },
     {
       "id": 3,
@@ -22,14 +22,14 @@
         5,
         3
       ],
-      "amount": 2
+      "amount": 5
     },
     {
       "id": 4,
       "name": "Oranges",
       "price": 30,
       "discount": null,
-      "amount": 10
+      "amount": 8
     },
     {
       "id": 5,
@@ -39,7 +39,7 @@
         3,
         2
       ],
-      "amount": 0
+      "amount": 6
     }
   ]
 }

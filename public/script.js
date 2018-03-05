@@ -91,18 +91,27 @@ updateBasket = () => {
 
                 // Product details
                 const productItem = document.createElement('li');
-                productItem.innerText = `${name}: ${amount} * ${price}`;
+                productItem.innerText = `${name}: ${amount} * ${price} `;
 
                 // Product controls
                 const addButton = createControl(id, 'increase', '+ Add 1');
                 const remButton = createControl(id, 'decrease', '- Remove 1');
                 const delButton = createControl(id, 'delete', 'Delete from basket');
 
+                // Display discount to the user
+                const discountInfo = () => {
+                    let discountEl = document.createElement('em');
+                    if (product.discount) {
+                        discountEl.innerText = ` ${product.discount[0]} for the price of ${product.discount[1]}!`;
+                    }
+                    return discountEl;
+                };
+
                 // Mount product to DOM
                 if (amount > 0) {
                     document.getElementById('basket')
                         .appendChild(productItem)
-                        .append(addButton, remButton, delButton);
+                        .append(addButton, remButton, delButton, discountInfo());
                 }
             });
 
