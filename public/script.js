@@ -36,6 +36,17 @@ changeProductAmount = (id, type) => {
         .catch(err => console.error(err));
 };
 
+// Format currency helper function
+// Takes a value in cents as an integer and returns a formatted string
+formatCurrency = (value) => {
+    const wholeNumberz = value / 100;
+    return wholeNumberz.toLocaleString('en-US', {
+        currency: 'USD',
+        minimumFractionDigits: 2,
+        style: 'currency'
+    });
+};
+
 // Calculate product price
 calculateProductPrice = (amount, price, discount) => {
     // If there's no discount defined at all we can return early and not execute this code any further
@@ -63,7 +74,7 @@ updateTotalDue = (products) => {
         total = total + calculateProductPrice(amount, price, discount);
     });
     console.log('Total:', total);
-    document.getElementById('total').innerHTML = total.toString();
+    document.getElementById('total').innerHTML = formatCurrency(total);
 };
 
 // Control helper function; generates a button element
@@ -91,7 +102,7 @@ updateBasket = () => {
 
                 // Product details
                 const productItem = document.createElement('li');
-                productItem.innerText = `${name}: ${amount} * ${price} `;
+                productItem.innerText = `${name}: ${amount} * ${formatCurrency(price)} `;
 
                 // Product controls
                 const addButton = createControl(id, 'increase', '+ Add 1');
