@@ -4,6 +4,7 @@ Basket proof of concept.
 
 ```bash
 npm install # Install dependencies
+npm run start-api # Start mock API
 npm start # Start client
 ```
 
