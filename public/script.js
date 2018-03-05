@@ -6,7 +6,18 @@
 
 // Empty basket
 
-// Calculate total due
+// Update total due
+updateTotalDue = (products) => {
+    let total = 0;
+    products.map(product => {
+        const { name, price, amount } = product;
+        console.log(name, amount, '*', price, '=', amount * price);
+        total = total + price * amount;
+    });
+    console.log('Total:', total);
+    // TODO: Apply discount
+    document.getElementById('total').innerHTML = total.toString();
+};
 
 // Update basket
 updateBasket = () => {
@@ -17,16 +28,19 @@ updateBasket = () => {
             console.log('Received:', data);
 
             // Build product list
-            return data.map(product => {
+            data.map(product => {
                 const { name, price, amount } = product;
                 const productItem = document.createElement('p');
                 productItem.innerText = `${name} ${price} ${amount}`;
 
                 // Mount product to DOM
                 if (amount > 0) {
-                    document.getElementById('app').appendChild(productItem);
+                    document.getElementById('basket').appendChild(productItem);
                 }
-            })
+            });
+
+            // Invoke total due update
+            updateTotalDue(data);
         })
         .catch(err => console.error(err));
 };
