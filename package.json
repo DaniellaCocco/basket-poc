@@ -11,7 +11,7 @@
   },
   "scripts": {
     "start": "node app.js",
-    "start-api": "json-server --watch mockapi/db.json --port 8081"
+    "start-api": "json-server --watch mockapi/db.js --port 8081"
   },
   "dependencies": {
     "express": "4.16.2",

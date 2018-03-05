@@ -1,18 +1,21 @@
-{
+// Little helper function which takes care of the generation of a new basket every time the mock API is launched
+const randomAmount = () => Math.floor(Math.random() * 10);
+
+const data = {
   "products": [
     {
       "id": 1,
       "name": "Apples",
       "price": 25,
       "discount": null,
-      "amount": 0
+      "amount": randomAmount()
     },
     {
       "id": 2,
       "name": "Bananas",
       "price": 10,
       "discount": null,
-      "amount": 0
+      "amount": randomAmount()
     },
     {
       "id": 3,
@@ -22,14 +25,14 @@
         5,
         3
       ],
-      "amount": 15
+      "amount": randomAmount()
     },
     {
       "id": 4,
       "name": "Oranges",
       "price": 30,
       "discount": null,
-      "amount": 0
+      "amount": randomAmount()
     },
     {
       "id": 5,
@@ -39,7 +42,11 @@
         3,
         2
       ],
-      "amount": 0
+      "amount": randomAmount()
     }
   ]
-}
+};
+
+module.exports = () => {
+    return data;
+};
