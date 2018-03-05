@@ -1,11 +1,26 @@
-// Increase product amount
-increaseProductAmount = (id) => {
+// Calculate new product amount helper
+// Takes the old amount and the type of computation required and returns the new value
+// NOTE: In a real-world app it'd be useful to document the business logic properly, possibly with something like JSDoc.
+calculateNewAmount = (oldAmount, type) => {
+
+    // NOTE: In a real-world app you'd want to check the parameter values someway before using them.
+    if (type === 'increase') return oldAmount + 1;
+    if (type === 'decrease') return oldAmount - 1;
+    return 0; // Default = assume type 'delete'
+};
+
+// Change product amount
+changeProductAmount = (id, type) => {
     let newAmount = 0;
+
+    // First we'll get the current (old) product
     fetch(`http://localhost:8081/products/${id}`)
         .then(res => res.json())
         .then(data => {
             console.log('Received amount:', data.amount);
-            newAmount = data.amount + 1;
+
+            // Calculate the new to-be amount
+            newAmount = calculateNewAmount(data.amount, type);
             fetch(`http://localhost:8081/products/${id}`, {
                 body: JSON.stringify({ 'amount': newAmount }),
                 headers: { 'content-type': 'application/json' },
@@ -18,16 +33,8 @@ increaseProductAmount = (id) => {
                 })
                 .catch(err => console.error(err));
         })
-        .catch(err => {
-            console.error(err);
-        });
+        .catch(err => console.error(err));
 };
-
-// Decrease product
-
-// Remove product
-
-// Empty basket
 
 // Calculate product price
 calculateProductPrice = (amount, price, discount) => {
@@ -59,6 +66,14 @@ updateTotalDue = (products) => {
     document.getElementById('total').innerHTML = total.toString();
 };
 
+// Control helper function; generates a button element
+createControl = (id, type, text) => {
+    const control = document.createElement('button');
+    control.onclick = () => { changeProductAmount(id, type) };
+    control.innerText = text;
+    return control;
+};
+
 // Update basket
 updateBasket = () => {
     // Get new basket
@@ -72,13 +87,20 @@ updateBasket = () => {
 
             // Build product list
             data.map(product => {
-                const { name, price, amount } = product;
+                const { id, name, price, amount } = product;
                 const productItem = document.createElement('p');
                 productItem.innerText = `${name} ${price} ${amount}`;
 
+                // Product controls
+                const addButton = createControl(id, 'increase', '+ Add 1');
+                const remButton = createControl(id, 'decrease', '- Remove 1');
+                const delButton = createControl(id, 'delete', 'Delete from basket');
+
                 // Mount product to DOM
                 if (amount > 0) {
-                    document.getElementById('basket').appendChild(productItem);
+                    document.getElementById('basket')
+                        .appendChild(productItem)
+                        .append(addButton, remButton, delButton);
                 }
             });
 
