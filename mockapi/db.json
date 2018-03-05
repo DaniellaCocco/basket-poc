@@ -5,7 +5,7 @@
       "name": "Apples",
       "price": 25,
       "discount": null,
-      "amount": 5
+      "amount": 0
     }, {
       "id": 2,
       "name": "Bananas",
@@ -29,7 +29,7 @@
       "name": "Papayas",
       "price": 50,
       "discount": [3, 2],
-      "amount": 2
+      "amount": 3
     }
   ]
 }
