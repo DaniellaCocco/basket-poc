@@ -1,3 +1,11 @@
+> This repo contains my result of a code challenge I did in one of my past lives. A functional basket had to be built **without front-end frameworks** (so just barebones HTML, CSS & JavaScript), **within 4 hours** (I spent 2h 50m), and had to adhere to various requirements (sell certain fruits with certain discounts, etc).
+
+---
+
+![](basket-poc.gif)
+
+---
+
 # Basket POC
 
 Basket proof of concept.
@@ -18,7 +26,7 @@ npm start # Start client
 
 The code contained in this package has been optimised for simplicity to provide for a high throughput of features within the total time spent. 
 
-I’ve not used any code pre-processing packages (e.g. Webpack, Babel) as they would take more time to configure properly than would be reasonable for an application which has as its main purpose to function as a _proof of concept_.
+I’ve not used any code pre-processing packages (e.g. Webpack, Babel) as they would take more time to configure properly than would be reasonable for an application which has as its main purpose to function as a *proof of concept*.
 
 In a real life scenario, the current state of the code would provide a good starting point for further improvements according to clarified/expanded specifications; there’s still a good amount of time left within the time originally timeboxed (which was 4 hours). 
 

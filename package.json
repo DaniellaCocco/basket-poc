@@ -5,16 +5,12 @@
   "license": "UNLICENSED",
   "description": "Basket proof of concept.",
   "private": true,
-  "engines": {
-    "node": "8.9.4",
-    "npm": "5.6.0"
-  },
   "scripts": {
     "start": "node app.js",
     "start-api": "json-server --watch mockapi/db.js --port 8081"
   },
   "dependencies": {
     "express": "4.16.2",
-    "json-server": "0.12.1"
+    "json-server": "0.12.2"
   }
 }
