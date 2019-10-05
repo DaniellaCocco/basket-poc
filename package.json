@@ -1,10 +1,7 @@
 {
   "name": "basket-poc",
-  "version": "0.1.0",
   "author": "Daniella Cocco <d@daniellacoc.co> (http://daniellacoc.co)",
-  "license": "UNLICENSED",
-  "description": "Basket proof of concept.",
-  "private": true,
+  "license": "MIT",
   "scripts": {
     "start": "node app.js",
     "start-api": "json-server --watch mockapi/db.js --port 8081"
